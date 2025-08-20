@@ -1,0 +1,16 @@
+    # Flutter build output
+    /build/
+
+    # Generated Dart files
+    *.g.dart
+    *.freezed.dart
+
+    # Local environment variables
+    .env
+
+    # Test coverage information
+    lcov.info
+
+    # Operating system specific files
+    .DS_Store
+    Thumbs.db
