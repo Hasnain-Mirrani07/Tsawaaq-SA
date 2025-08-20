@@ -27,7 +27,11 @@ jobs:
 
       - name: Install Dependencies
         run: flutter pub get
-#
+
+      - name: Upgrade dependencies
+        run: flutter pub upgrade
+
+      #
 #      - name: Analyze
 #        run: flutter analyze
 #
