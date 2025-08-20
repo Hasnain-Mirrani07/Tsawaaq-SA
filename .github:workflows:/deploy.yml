@@ -1,0 +1,51 @@
+name: Flutter Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build debug APK (smoke)
+        run: flutter build apk --debug
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build debug APK (smoke)
+        run: flutter build apk --debug
+
+      - name: Build release APK
+        run: flutter build apk --release
+
+      - name: Upload debug APK artifact
+        uses: actions/upload-artifact@v4
+
+        with:
+          name: debug-apk
+          path: build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload release APK artifact
+        uses: actions/upload-artifact@v4
+
+        with:
+          name: release-apk
+          path: build/outputs/apk/release/app-release.apk
+          retention-days: 7
+
+
