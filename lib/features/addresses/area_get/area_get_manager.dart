@@ -8,24 +8,22 @@ class AreaGetManager extends Manager<AreaResponse> {
   final BehaviorSubject<AreaResponse> _subject = BehaviorSubject<AreaResponse>();
   Stream<AreaResponse> get ereas$ => _subject.stream;
 
-
   List<Area> areaSearchList = [];
 
   // final BehaviorSubject<List<Area>> areaSearchListSubject = BehaviorSubject<List<Area>>();
 
-  final BehaviorSubject<List<Area>> areaSearchListSubject =
-  BehaviorSubject<List<Area>>();
+  final BehaviorSubject<List<Area>> areaSearchListSubject = BehaviorSubject<List<Area>>();
 
-  void resetAreasList(){
+  void resetAreasList() {
     areaSearchList.clear();
     areaSearchList = List.from(_subject.value.data!);
     areaSearchListSubject.sink.add(areaSearchList);
   }
 
-  void searchInAreas({required String word}){
+  void searchInAreas({required String word}) {
     areaSearchList.clear();
     for (var area in _subject!.value!.data!) {
-      if("${area.name!.toLowerCase()}".contains(word.toLowerCase())){
+      if ("${area.name!.toLowerCase()}".contains(word.toLowerCase())) {
         areaSearchList.add(area);
       }
     }
@@ -45,19 +43,19 @@ class AreaGetManager extends Manager<AreaResponse> {
   //   });
   //   return _subject.stream;
   // }
-
+//test
 
   execute() async {
     await AreaGetRepo.getArea().then(
-          (result) {
-            if (result.error == null) {
-              _subject.add(result);
-              resetAreasList();
-              areaSearchList = List.from(result.data!);
-              areaSearchListSubject.sink.add(areaSearchList);
-            } else {
-              _subject.addError(result.error);
-            }
+      (result) {
+        if (result.error == null) {
+          _subject.add(result);
+          resetAreasList();
+          areaSearchList = List.from(result.data!);
+          areaSearchListSubject.sink.add(areaSearchList);
+        } else {
+          _subject.addError(result.error);
+        }
       },
     );
   }
@@ -68,7 +66,6 @@ class AreaGetManager extends Manager<AreaResponse> {
   @override
   void clearSubject() {}
 }
-
 
 // import 'package:rxdart/rxdart.dart';
 // import 'package:tasawaaq/app_core/app_core.dart';
