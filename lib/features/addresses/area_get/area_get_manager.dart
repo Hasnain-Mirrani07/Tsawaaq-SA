@@ -44,6 +44,7 @@ class AreaGetManager extends Manager<AreaResponse> {
   //   return _subject.stream;
   // }
 //test
+//test
 
   execute() async {
     await AreaGetRepo.getArea().then(
