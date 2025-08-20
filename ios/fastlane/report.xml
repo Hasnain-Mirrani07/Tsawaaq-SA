@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000496">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Switch to ios build_appstore lane" time="0.00069">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: increment_build_number" time="5.629963">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: gym" time="458.215443">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: pilot" time="716.670932">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

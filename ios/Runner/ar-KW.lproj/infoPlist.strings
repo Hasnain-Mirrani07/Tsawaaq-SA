@@ -1,0 +1,9 @@
+/* 
+  infoPlist.strings
+  Runner
+
+  Created by Mohamed Nabil on 11/08/2021.
+  
+*/
+"CFBundleDisplayName" = "تسوق";
+"CFBundleName" = "تسوق";

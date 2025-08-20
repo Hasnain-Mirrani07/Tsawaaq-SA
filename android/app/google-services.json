@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "92894532835",
+    "project_id": "tasawaaq-f482f",
+    "storage_bucket": "tasawaaq-f482f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92894532835:android:f5a8dff90d9ec16edfa1d6",
+        "android_client_info": {
+          "package_name": "com.kw.tsawaaq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92894532835-bloh84l6np57210cp1jj8q8sjnpv8tod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhoU3hOg3HCT-OQc0rmk3_S-ID4RvLnlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92894532835-bloh84l6np57210cp1jj8q8sjnpv8tod.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92894532835-82dvv44gj1vg3d7j1l52h1gm5bj5d1mr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.tasawaaq"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
