@@ -1,6 +1,5 @@
-import 'dart:io';
 import 'package:animate_do/animate_do.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,7 +28,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   @override
   void initState() {
     super.initState();
@@ -39,12 +37,8 @@ class _ProfilePageState extends State<ProfilePage> {
     // locator<AllStoresManager>().selectedIndex.value = 0;
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
     // final profileManager = context.use<ProfileManager>();
     final profileManager = locator<ProfileManager>();
 
@@ -120,8 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(50)),
+                                        borderRadius: BorderRadius.all(Radius.circular(50)),
                                         child: profileSnapshot.data!.image == ""
                                             ? SvgPicture.asset(
                                                 '${AppAssets.noun_User}',
@@ -141,10 +134,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ),
                                       Expanded(
                                           child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(
                                             height: 5,
@@ -189,35 +180,31 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 ProfileItem(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditProfilePage(
-                                      user: profileSnapshot.data!,
-                                    )));
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => EditProfilePage(
+                                              user: profileSnapshot.data!,
+                                            )));
                                   },
-                                    // Navigator.of(context).pushNamed(
-                                    //     AppRouts.EDIT_PROFILE_PAGE,
-                                    //     arguments: EditProfileArgs(
-                                    //         user: profileSnapshot.data!));
+                                  // Navigator.of(context).pushNamed(
+                                  //     AppRouts.EDIT_PROFILE_PAGE,
+                                  //     arguments: EditProfileArgs(
+                                  //         user: profileSnapshot.data!));
 
-                                  title:
-                                      "${context.translate(AppStrings.EDIT_PROFILE)}",
+                                  title: "${context.translate(AppStrings.EDIT_PROFILE)}",
                                   iconName: AppAssets.noun_User,
                                 ),
                                 ProfileItem(
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .pushNamed(AppRouts.MyAddressesPage);
+                                    Navigator.of(context).pushNamed(AppRouts.MyAddressesPage);
                                   },
-                                  title:
-                                      "${context.translate(AppStrings.My_Addresses)}",
+                                  title: "${context.translate(AppStrings.My_Addresses)}",
                                   iconName: AppAssets.Location,
                                 ),
                                 ProfileItem(
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .pushNamed(AppRouts.ChangePasswordPage);
+                                    Navigator.of(context).pushNamed(AppRouts.ChangePasswordPage);
                                   },
-                                  title:
-                                      "${context.translate(AppStrings.CHANGE_PASSWORD)}",
+                                  title: "${context.translate(AppStrings.CHANGE_PASSWORD)}",
                                   iconName: AppAssets.PASS_SVG,
                                 ),
                                 if (prefs.userObj != null)
@@ -226,43 +213,39 @@ class _ProfilePageState extends State<ProfilePage> {
                                       showDialog(
                                           context: context,
                                           builder: (BuildContext context) => CupertinoAlertDialog(
-                                            title: Text(
-                                              '${prefs.appLanguage == "en" ? "delete account" : "مسح الحساب"}',
-                                              style: TextStyle(
-                                                color: Colors.redAccent.withOpacity(.8),
-                                              ),
-                                            ),
-                                            content: Text(
-                                                '${prefs.appLanguage == "en" ? "Are you sure you want to delete the account" : "هل أنت متأكد أنك تريد حذف الحساب"}'),
-                                            actions: <Widget>[
-                                              CupertinoDialogAction(
-                                                isDefaultAction: true,
-                                                child: Text(
-                                                  '${prefs.appLanguage == "en" ? "cancel" : "الغاء"}',
-                                                  style:  TextStyle(color: Colors.black),
+                                                title: Text(
+                                                  '${prefs.appLanguage == "en" ? "delete account" : "مسح الحساب"}',
+                                                  style: TextStyle(
+                                                    color: Colors.redAccent.withOpacity(.8),
+                                                  ),
                                                 ),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                              CupertinoDialogAction(
-                                                child: Text(
-                                                  '${prefs.appLanguage == "en" ? "yes" : "نعم"}',
-                                                  style:  TextStyle(color: Colors.black45),
-                                                ),
-                                                onPressed: () async {
-                                                  await locator<DeleteUserManager>().deleteUser();
-                                                },
-                                              )
-                                            ],
-                                          ));
+                                                content: Text('${prefs.appLanguage == "en" ? "Are you sure you want to delete the account" : "هل أنت متأكد أنك تريد حذف الحساب"}'),
+                                                actions: <Widget>[
+                                                  CupertinoDialogAction(
+                                                    isDefaultAction: true,
+                                                    child: Text(
+                                                      '${prefs.appLanguage == "en" ? "cancel" : "الغاء"}',
+                                                      style: TextStyle(color: Colors.black),
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                  ),
+                                                  CupertinoDialogAction(
+                                                    child: Text(
+                                                      '${prefs.appLanguage == "en" ? "yes" : "نعم"}',
+                                                      style: TextStyle(color: Colors.black45),
+                                                    ),
+                                                    onPressed: () async {
+                                                      await locator<DeleteUserManager>().deleteUser();
+                                                    },
+                                                  )
+                                                ],
+                                              ));
                                     },
                                     child: Text(
                                       '${prefs.appLanguage == "en" ? "delete account" : 'مسح الحساب'}',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.redAccent.withOpacity(.9),
-                                          decoration: TextDecoration.underline),
+                                      style: TextStyle(fontSize: 12, color: Colors.redAccent.withOpacity(.9), decoration: TextDecoration.underline),
                                     ),
                                   ),
                                 const SizedBox(
@@ -308,8 +291,7 @@ class _ProfilePageState extends State<ProfilePage> {
 class ProfileItem extends StatelessWidget {
   final String? title, iconName;
   final GestureTapCallback? onTap;
-  const ProfileItem({Key? key, this.title, this.iconName, this.onTap})
-      : super(key: key);
+  const ProfileItem({Key? key, this.title, this.iconName, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -353,24 +335,24 @@ class ProfileItem extends StatelessWidget {
   }
 }
 
-
 void _logOutDialog(BuildContext context) {
   final prefs = locator<PrefsService>();
-  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
+  // final FirebaseMessaging _fcm = FirebaseMessaging.instance;
 
   showDialog(
       context: context,
       builder: (_) {
         return TasawaaqDialog(
-          onCloseBtn: (){
+          onCloseBtn: () {
             Navigator.of(context).pop();
           },
           titleTextAlign: TextAlign.start,
           contentTextAlign: TextAlign.start,
           confirmBtnTxt: '${context.translate(AppStrings.YES)}',
           columnCrossAxisAlignment: CrossAxisAlignment.start,
-          onClickConfirmBtn: (){
+          onClickConfirmBtn: () {
             locator<PrefsService>().removeUserObj();
+
             ///TODO: don't forget to logout social accounts
 
             // final FirebaseMessaging _fcm = FirebaseMessaging.instance;
@@ -381,22 +363,23 @@ void _logOutDialog(BuildContext context) {
             // }
 
             Navigator.of(context).pushNamedAndRemoveUntil(
-                     AppRouts.SignInPage,
-                    (Route<dynamic> route) => false,);
-            if(Platform.isIOS) {
-              if(prefs.appLanguage == 'en'){
-                _fcm.unsubscribeFromTopic('IOSEN');
-              }else{
-                _fcm.unsubscribeFromTopic('IOSAR');
-              }
-            }
-            else{
-              if(prefs.appLanguage == 'en'){
-                _fcm.unsubscribeFromTopic('AndroidEn');
-              } else{
-                _fcm.unsubscribeFromTopic('AndroidAr');
-              }
-            }
+              AppRouts.SignInPage,
+              (Route<dynamic> route) => false,
+            );
+            // if(Platform.isIOS) {
+            //   if(prefs.appLanguage == 'en'){
+            //     _fcm.unsubscribeFromTopic('IOSEN');
+            //   }else{
+            //     _fcm.unsubscribeFromTopic('IOSAR');
+            //   }
+            // }
+            // else{
+            //   if(prefs.appLanguage == 'en'){
+            //     _fcm.unsubscribeFromTopic('AndroidEn');
+            //   } else{
+            //     _fcm.unsubscribeFromTopic('AndroidAr');
+            //   }
+            // }
           },
           title: '${context.translate(AppStrings.LOGOUT)}',
           description: '${context.translate(AppStrings.LOGOUT_DIALOG_MSG)}',

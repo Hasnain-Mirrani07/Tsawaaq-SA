@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tasawaaq/app_core/fcm/localNotificationService.dart';
-import 'package:tasawaaq/app_core/fcm/pushNotification_service.dart';
 import 'package:tasawaaq/app_routs/app_routs.dart';
 import 'package:tasawaaq/app_style/app_style.dart';
 import 'package:tasawaaq/features/Profile/profile_page.dart';
@@ -50,13 +47,13 @@ import 'package:tasawaaq/features/verification/verification_page.dart';
 import 'app_core/app_core.dart';
 import 'features/setting/pages/page.dart';
 
-@pragma('vm:entry-point')
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  await Firebase.initializeApp();
-  // print('Handling a background message ${message.messageId}');
-}
+// @pragma('vm:entry-point')
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   // If you're going to use other Firebase services in the background, such as Firestore,
+//   // make sure you call `initializeApp` before using other Firebase services.
+//   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+//   // print('Handling a background message ${message.messageId}');
+// }
 
 Future<void> main() async {
   // locator<PushNotificationService>().xxx()
@@ -77,16 +74,17 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
 
     //! Firebase Core.
-    await Firebase.initializeApp();
-    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+    // await Firebase.initializeApp();
+    // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
     try {
       await setupLocator().then(
         (_) async {
           AppLanguageManager appLanguage = locator<AppLanguageManager>();
           await appLanguage.fetchLocale();
 
-          await SystemChrome.setPreferredOrientations(
-              [DeviceOrientation.portraitUp]);
+          await SystemChrome.setPreferredOrientations([
+            DeviceOrientation.portraitUp
+          ]);
           SystemChrome.setSystemUIOverlayStyle(
             SystemUiOverlayStyle(
               // status bar color
@@ -117,8 +115,7 @@ Future<void> main() async {
         },
 
         /// TODO: Uncomment when used Firebase
-        onError: (error, stackTrace) => debugPrint(
-            'runZonedGuarded: Caught error in my root zone. \n$error'),
+        onError: (error, stackTrace) => debugPrint('runZonedGuarded: Caught error in my root zone. \n$error'),
         //! [3] Crashlytics.
         // onError: (error, stackTrace) =>
         //     FirebaseCrashlytics.instance.recordError(error, stackTrace),
@@ -128,8 +125,7 @@ Future<void> main() async {
     }
   }, (error, stackTrace) {
     debugPrint('runZonedGuarded: Caught error in my root zone. \n$error');
-    debugPrint(
-        'runZonedGuarded: Caught error in my root zone. \n${error.toString()}');
+    debugPrint('runZonedGuarded: Caught error in my root zone. \n${error.toString()}');
     debugPrint('runZonedGuarded: Caught error in my root zone. \n$stackTrace');
 
     /// TODO: Uncomment when used Firebase
@@ -148,7 +144,7 @@ class _TasawaaqAppState extends State<TasawaaqApp> {
     super.initState();
     ////////////////////////////////////////////////////////////////////////////
     /// ! PushNotification
-    locator<PushNotificationService>().initialize();
+    // locator<PushNotificationService>().initialize();
     ////////////////////////////////////////////////////////////////////////////
     /// ! LocalNotification
     locator<LocalNotificationService>().initializeLocalNotification();
@@ -244,16 +240,14 @@ class _TasawaaqAppState extends State<TasawaaqApp> {
                 AppRouts.TABS_WIDGET: (_) => TabsWidget(),
                 AppRouts.ADS_PAGE: (_) => AdsPage(),
                 AppRouts.ForgetPasswordPage: (_) => ForgetPasswordPage(),
-                AppRouts.ForgetPasswordConfirmPage: (_) =>
-                    ForgetPasswordConfirmPage(),
+                AppRouts.ForgetPasswordConfirmPage: (_) => ForgetPasswordConfirmPage(),
                 AppRouts.SignInPage: (_) => SignInPage(),
                 AppRouts.FeaturedProductsPage: (_) => FeaturedProductsPage(),
                 AppRouts.MallsPage: (_) => MallsPage(),
                 AppRouts.ProductsListPage: (_) => ProductsListPage(),
                 AppRouts.MallDetailsPage: (_) => MallDetailsPage(),
                 AppRouts.AllStoresPage: (_) => AllStoresPage(),
-                AppRouts.AboutMallsAndStorePage: (_) =>
-                    AboutMallsAndStorePage(),
+                AppRouts.AboutMallsAndStorePage: (_) => AboutMallsAndStorePage(),
                 AppRouts.ProductDetails: (_) => ProductDetails(),
                 AppRouts.CartPage: (_) => CartPage(),
                 AppRouts.CheckOutPage: (_) => CheckOutPage(),
@@ -273,8 +267,7 @@ class _TasawaaqAppState extends State<TasawaaqApp> {
                 AppRouts.IntroPage: (_) => IntroPage(),
                 AppRouts.FILTER_PAGE: (_) => FilterPage(),
                 AppRouts.VerificationPage: (_) => VerificationPage(),
-                AppRouts.ForgetPasswordVerificationPage: (_) =>
-                    ForgetPasswordVerificationPage(),
+                AppRouts.ForgetPasswordVerificationPage: (_) => ForgetPasswordVerificationPage(),
                 // AppRouts.EditaddressPage: (_) => EditAddressPage(),
                 AppRouts.PaymentWebPage: (_) => PaymentWebPage(),
                 AppRouts.PhoneVerificationPage: (_) => PhoneVerificationPage(),

@@ -15,31 +15,23 @@ allprojects {
                     // ✅ Force same compileSdkVersion across all modules
                     compileSdkVersion 35
 
-                    // ✅ Enable Java 17 + desugaring support
+                    // ✅ Enable Java 17 compatibility
                     compileOptions {
                         sourceCompatibility JavaVersion.VERSION_17
                         targetCompatibility JavaVersion.VERSION_17
-                        coreLibraryDesugaringEnabled true
                     }
 
-                    // ✅ Toolchain for consistency
-                    java {
-                        toolchain {
-                            languageVersion = JavaLanguageVersion.of(17)
-                        }
-                    }
-
-                    // ✅ Some libraries (Firebase, notifications) require multidex
+                    // ✅ Multidex support for Firebase & others
                     defaultConfig {
                         multiDexEnabled true
                     }
                 }
+            }
 
-                // ✅ Apply kotlinOptions outside android{} (works for both app & library modules)
-                project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-                    kotlinOptions {
-                        jvmTarget = "17"
-                    }
+            // ✅ Apply Kotlin JVM target OUTSIDE android {}
+            project.tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                kotlinOptions {
+                    jvmTarget = "17"
                 }
             }
         }
@@ -47,6 +39,7 @@ allprojects {
 }
 
 rootProject.buildDir = "../build"
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(":app")

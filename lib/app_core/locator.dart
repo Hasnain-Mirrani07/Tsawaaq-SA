@@ -1,8 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:tasawaaq/app_core/fcm/FcmTokenManager.dart';
-import 'package:tasawaaq/app_core/fcm/analytics_service/analytics_service.dart';
 import 'package:tasawaaq/app_core/fcm/localNotificationService.dart';
-import 'package:tasawaaq/app_core/fcm/pushNotification_service.dart';
 import 'package:tasawaaq/app_core/services/media_service/media_Service.dart';
 import 'package:tasawaaq/features/Profile/profile_manager.dart';
 import 'package:tasawaaq/features/about_mall_and_store/about_mall/about_mall_manager.dart';
@@ -85,12 +83,11 @@ Future<void> setupLocator() async {
   //     () => LocalNotificationService());
 
   /// LocalNotificationService
-  locator.registerLazySingleton<LocalNotificationService>(
-      () => LocalNotificationService());
+  locator.registerLazySingleton<LocalNotificationService>(() => LocalNotificationService());
 
   /// PushNotificationService
-  locator.registerLazySingleton<PushNotificationService>(
-      () => PushNotificationService());
+  // locator.registerLazySingleton<PushNotificationService>(
+  //     () => PushNotificationService());
 
   /// LoadingManager
   locator.registerLazySingleton<LoadingManager>(() => LoadingManager());
@@ -102,12 +99,10 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<ToastTemplate>(() => ToastTemplate());
 
   /// ForgetPasswordManager
-  locator.registerLazySingleton<ForgetPasswordManager>(
-      () => ForgetPasswordManager());
+  locator.registerLazySingleton<ForgetPasswordManager>(() => ForgetPasswordManager());
 
   /// ForgetPasswordConfirmManager
-  locator.registerLazySingleton<ForgetPasswordConfirmManager>(
-      () => ForgetPasswordConfirmManager());
+  locator.registerLazySingleton<ForgetPasswordConfirmManager>(() => ForgetPasswordConfirmManager());
 
   /// MallDetailsManager
   locator.registerLazySingleton<MallDetailsManager>(() => MallDetailsManager());
@@ -137,8 +132,7 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<ContactUsManager>(() => ContactUsManager());
 
   /// ChangePasswordManager
-  locator.registerLazySingleton<ChangePasswordManager>(
-      () => ChangePasswordManager());
+  locator.registerLazySingleton<ChangePasswordManager>(() => ChangePasswordManager());
 
   /// AdsManager
   locator.registerLazySingleton<AdsManager>(() => AdsManager());
@@ -162,26 +156,22 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<SignUpManager>(() => SignUpManager());
 
   /// VerificationManager
-  locator
-      .registerLazySingleton<VerificationManager>(() => VerificationManager());
+  locator.registerLazySingleton<VerificationManager>(() => VerificationManager());
 
   /// ResendManager
   locator.registerLazySingleton<ResendManager>(() => ResendManager());
 
   /// ForgetPasswordResendManager
-  locator.registerLazySingleton<ForgetPasswordResendManager>(
-      () => ForgetPasswordResendManager());
+  locator.registerLazySingleton<ForgetPasswordResendManager>(() => ForgetPasswordResendManager());
 
   /// ForgetPasswordVerificationManager
-  locator.registerLazySingleton<ForgetPasswordVerificationManager>(
-      () => ForgetPasswordVerificationManager());
+  locator.registerLazySingleton<ForgetPasswordVerificationManager>(() => ForgetPasswordVerificationManager());
 
   /// MallsManager
   locator.registerLazySingleton<MallsManager>(() => MallsManager());
 
   /// FeaturedProductsManager
-  locator.registerLazySingleton<FeaturedProductsManager>(
-      () => FeaturedProductsManager());
+  locator.registerLazySingleton<FeaturedProductsManager>(() => FeaturedProductsManager());
 
   /// AboutStoreManager
   locator.registerLazySingleton<AboutStoreManager>(() => AboutStoreManager());
@@ -190,8 +180,7 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<AboutMallManager>(() => AboutMallManager());
 
   /// ProductDetailsManager
-  locator.registerLazySingleton<ProductDetailsManager>(
-      () => ProductDetailsManager());
+  locator.registerLazySingleton<ProductDetailsManager>(() => ProductDetailsManager());
 
   /// CategoriesManager
   locator.registerLazySingleton<CategoriesManager>(() => CategoriesManager());
@@ -212,19 +201,16 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<FavoriteManager>(() => FavoriteManager());
 
   /// AddRemoveFavoriteManager
-  locator.registerLazySingleton<AddRemoveFavoriteManager>(
-      () => AddRemoveFavoriteManager());
+  locator.registerLazySingleton<AddRemoveFavoriteManager>(() => AddRemoveFavoriteManager());
 
   /// CheckoutInfoManager
-  locator
-      .registerLazySingleton<CheckoutInfoManager>(() => CheckoutInfoManager());
+  locator.registerLazySingleton<CheckoutInfoManager>(() => CheckoutInfoManager());
 
   /// MyAddressesManager
   locator.registerLazySingleton<MyAddressesManager>(() => MyAddressesManager());
 
   /// DeleteAddressManager
-  locator.registerLazySingleton<DeleteAddressManager>(
-      () => DeleteAddressManager());
+  locator.registerLazySingleton<DeleteAddressManager>(() => DeleteAddressManager());
 
   /// EditAddressManager
   locator.registerLazySingleton<EditAddressManager>(() => EditAddressManager());
@@ -242,8 +228,7 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<CouponManager>(() => CouponManager());
 
   /// OrderDetailsManager
-  locator
-      .registerLazySingleton<OrderDetailsManager>(() => OrderDetailsManager());
+  locator.registerLazySingleton<OrderDetailsManager>(() => OrderDetailsManager());
 
   /// ProfileManager
   locator.registerLazySingleton<ProfileManager>(() => ProfileManager());
@@ -255,15 +240,13 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton<OffersManager>(() => OffersManager());
 
   /// OfferDetailsManager
-  locator
-      .registerLazySingleton<OfferDetailsManager>(() => OfferDetailsManager());
+  locator.registerLazySingleton<OfferDetailsManager>(() => OfferDetailsManager());
 
   /// PhoneVerificationManager
   locator.registerLazySingleton<PhoneVerificationManager>(() => PhoneVerificationManager());
 
   /// NotificationsManager
   locator.registerLazySingleton<NotificationsManager>(() => NotificationsManager());
-
 
   /// DeleteUserManager
   locator.registerLazySingleton<DeleteUserManager>(() => DeleteUserManager());
