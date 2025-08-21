@@ -2,29 +2,57 @@ name: Flutter CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, develop ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, develop ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Flutter
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.22.0" # change to your version
           channel: stable
 
-      - name: Install dependencies
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+            build
+          key: ${{ runner.os }}-pub-${{ hashFiles('pubspec.lock') }}
+          restore-keys: ${{ runner.os }}-pub-
+
+      - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run Flutter analyze
-        run: flutter analyze --no-fatal-warnings --no-fatal-infos
+      - name: Accept Android Licenses
+        run: yes | flutter doctor --android-licenses
 
-      - name: Run tests
-        run: flutter test --no-pub --coverage
+      # ⬇️ Modified here
+      - name: Flutter Analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Build Debug APK
+        run: flutter build apk --debug --no-shrink
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
